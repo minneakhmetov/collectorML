@@ -1,0 +1,36 @@
+kafka:
+  topic: kazanApi
+  groupId: kazanApi
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    dialect: POSTGRES
+
+---
+spring:
+  profiles: docker
+  datasource:
+    url: jdbc:postgresql://db:5432/kazan_bus
+    username: razil
+    password: H8pv2HFZvXqLAtHr
+
+tracing:
+  enabled: true
+
+kafka:
+  bootstrapAddress: kafka:9092
+
+---
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:postgresql://localhost:5432/kazan_bus
+    username: postgres
+    password: postgres
+
+tracing:
+  enabled: true
+
+kafka:
+  bootstrapAddress: localhost:9092

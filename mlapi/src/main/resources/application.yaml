@@ -1,0 +1,39 @@
+kazan:
+  api:
+    url: http://data.kzn.ru:8082/api/v0/dynamic_datasets/bus.json
+
+kafka:
+  topic: kazanApi
+  enabled: true
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+
+---
+spring:
+  profiles: docker
+  datasource:
+    url: jdbc:postgresql://db:5432/kazan_bus
+    username: razil
+    password: H8pv2HFZvXqLAtHr
+
+kafka:
+  bootstrapAddress: kafka:9092
+
+tracing:
+  enabled: true
+
+---
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:postgresql://localhost:5432/kazan_bus
+    username: postgres
+    password: postgres
+
+kafka:
+  bootstrapAddress: 185.188.182.213:9093
+
+tracing:
+  enabled: true
